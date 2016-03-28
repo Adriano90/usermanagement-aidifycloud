@@ -1,0 +1,35 @@
+{
+  "name": "usermanagement-aidifycloud",
+  "version": "0.1.0",
+  "description": "Aidify user management service, store github user data",
+  "main": "app.js",
+  "engines": {
+    "node": "5.9.0"
+  },
+  "scripts": {
+    "start": "hotnode app.js",
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adriano90/usermanagement-aidifycloud.git"
+  },
+  "keywords": [
+    "user",
+    "management",
+    "aidifycloud",
+    "hackathon"
+  ],
+  "author": "Juan Herrador Rodríguez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Adriano90/usermanagement-aidifycloud/issues"
+  },
+  "homepage": "https://github.com/Adriano90/usermanagement-aidifycloud#readme",
+  "dependencies": {
+    "lodash": "^4.6.1",
+    "node-env-file": "^0.1.8",
+    "redis": "^2.6.0-0",
+    "restify": "^4.0.4"
+  }
+}
