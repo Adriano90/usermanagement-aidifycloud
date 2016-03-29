@@ -28,6 +28,7 @@
   "homepage": "https://github.com/Adriano90/usermanagement-aidifycloud#readme",
   "dependencies": {
     "lodash": "^4.6.1",
+    "mongoose": "^4.4.10",
     "node-env-file": "^0.1.8",
     "redis": "^2.6.0-0",
     "restify": "^4.0.4"
