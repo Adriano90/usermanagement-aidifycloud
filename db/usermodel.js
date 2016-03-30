@@ -9,7 +9,7 @@ let userSchema = mongoose.Schema({
 	login: String
 });
 
-userSchema.index({ id: 1, login: 1 }, { unique: true })
+userSchema.index({ id: 1 }, { unique: true })
 
 let userModel = mongoose.model('User', userSchema);
 

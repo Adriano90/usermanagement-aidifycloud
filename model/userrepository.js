@@ -21,7 +21,7 @@ class UserRepository {
 					return;
 				}
 				
-				resolve(self.mapper.fromDB(user[0]));
+				resolve(user.length > 0 ? self.mapper.fromDB(user[0]) : null);
 			});
 		});
 	}
