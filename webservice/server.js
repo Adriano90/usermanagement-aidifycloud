@@ -18,7 +18,7 @@ class Server {
 		api.use(restify.bodyParser());
 		
 		api.get('/', function(req, res) {
-			let response = new Response(res, logger));
+			let response = new Response(res, logger);
 			response.pong();
 		});
 		
