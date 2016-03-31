@@ -17,6 +17,11 @@ class Server {
 		api.use(restify.queryParser());
 		api.use(restify.bodyParser());
 		
+		api.get('/', function(req, res) {
+			let response = new Response(res, logger));
+			response.pong();
+		});
+		
 		api.get('/user/:id', function(req, res) {
 			if (logger) {
 				logger.info('request GET : /user/' + JSON.stringify(req.params.id));

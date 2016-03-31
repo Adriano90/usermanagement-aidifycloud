@@ -9,22 +9,24 @@ env(__dirname + '/.env');
 // Create logger
 let logger = new Logger();
 
-// Webservice bootstrap
-const Server = require('./webservice/server');
-const GetUserUseCase = require('./usecases/getuser');
-const GetAllUserUseCase = require('./usecases/getusers');
-const UserMapper = require('./model/usermapper');
-const UserRepository = require('./model/userrepository');
+// Init DB
 const DbInit = require('./db/dbinit');
-const UserModel = require('./db/usermodel');
 
 new DbInit(logger);
 
+// Webservice bootstrap
+const Server = require('./webservice/server');
+const GetUserUseCase = require('./usecases/getuser');
+const GetAllUsersUseCase = require('./usecases/getusers');
+const UserMapper = require('./model/usermapper');
+const UserRepository = require('./model/userrepository');
+const UserModel = require('./db/usermodel');
+
 let userRepository = new UserRepository(logger, UserMapper, UserModel);
 let getUserUseCase = new GetUserUseCase(userRepository);
-let getAllUserUseCase = new GetAllUserUseCase(userRepository);
+let getAllUsersUseCase = new GetAllUsersUseCase(userRepository);
 
-new Server(logger, getUserUseCase, getAllUserUseCase);
+new Server(logger, getUserUseCase, getAllUsersUseCase);
 
 // Broker bootstrap
 const Broker = require('./messagebroker/broker');
