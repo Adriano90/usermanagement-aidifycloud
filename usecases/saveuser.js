@@ -8,9 +8,16 @@ class SaveUser {
 		this.userRepository = userRepository;
 	}
 	
-	execute(user) {
+	execute(user, res) {
 		this.userRepository
-			.save(user);
+			.save(user)
+			.then(function(user) {
+				res && res.ok(user);
+			})
+			.catch(function(err) {
+				console.log("SaveUserUseCase error: " + err);
+				res && res.ko(JSON.stringify('Error saving user'));
+			});
 	}
 }
 

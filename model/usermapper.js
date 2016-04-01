@@ -5,7 +5,7 @@
 const User = require('./user');
 
 module.exports.fromDB = function(dbUser) {
-	return new User(dbUser['id'], dbUser['login']);
+	return new User(dbUser['id'], dbUser['login'], dbUser['location']);
 }
 
 })();

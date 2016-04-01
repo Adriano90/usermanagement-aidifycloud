@@ -26,15 +26,14 @@ class UserRepository {
 		});
 	}
 	
-	getAll() {
+	getUsers(params) {
 		let self = this;
 		self.logger.info('Retrieving all users');
 		return new Promise(function (resolve,reject) {
-			self.UserModel.find({}, function(err, users) {
+			self.UserModel.find(params, function(err, users) {
 				if (err) {
 					self.logger.error(err)
-					reject(err);
-					return;
+					return reject(err);
 				}
 				
 				resolve(users.map((elem) => self.mapper.fromDB(elem)));
@@ -44,15 +43,21 @@ class UserRepository {
 	
 	save(user) {
 		let self = this;
-		self.UserModel.update(
-			{id: user.id}, 
-			{$setOnInsert: user}, 
-			{upsert: true}, 
-			function(err, numAffected) {
-				if (err) {
-					return self.logger.error(err);
+		console.log("User to save: %j", user);
+		return new Promise(function (resolve,reject) {
+			self.UserModel.update(
+				{id: user.id},
+				user,
+				{upsert: true},
+				function(err, numAffected) {
+					if (err) {
+						self.logger.error(err);
+						return reject(err);
+					}
+					resolve(user);
 				}
-			});
+			);
+		});
 	}
 }
 

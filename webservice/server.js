@@ -8,7 +8,7 @@ const Response = require('./response');
 
 class Server {
 	
-	constructor(logger, getUser, getUsers) {
+	constructor(logger, getUser, getUsers, saveUser) {
 		let api = restify.createServer({
 			name: config.name,
 			version: config.version
@@ -35,7 +35,21 @@ class Server {
 				logger.info('request GET : /user');
 			}
 			
-			getUsers.execute(null, new Response(res, logger));
+			let params = {};
+			if (req.query && req.query.location) {
+				params['location'] = req.query.location;
+			}
+			
+			getUsers.execute(params, new Response(res, logger));
+		});
+		
+		api.put('/user/:id', function(req, res) {
+			if (logger) {
+				logger.info('request PUT : /user/' + JSON.stringify(req.params.id));
+				logger.info(JSON.stringify(req.body));
+			}
+			
+			saveUser.execute(JSON.parse(req.body), new Response(res, logger));
 		});
 		
 		api.listen(process.env.PORT || 5001,function () {

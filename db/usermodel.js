@@ -6,7 +6,8 @@ let mongoose = require('mongoose');
 
 let userSchema = mongoose.Schema({
     id: Number,
-	login: String
+	login: String,
+	location: String
 });
 
 userSchema.index({ id: 1 }, { unique: true })

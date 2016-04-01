@@ -17,22 +17,21 @@ new DbInit(logger);
 // Webservice bootstrap
 const Server = require('./webservice/server');
 const GetUserUseCase = require('./usecases/getuser');
-const GetAllUsersUseCase = require('./usecases/getusers');
+const GetUsersUseCase = require('./usecases/getusers');
+const SaveUserUseCase = require('./usecases/saveuser');
 const UserMapper = require('./model/usermapper');
 const UserRepository = require('./model/userrepository');
 const UserModel = require('./db/usermodel');
 
 let userRepository = new UserRepository(logger, UserMapper, UserModel);
 let getUserUseCase = new GetUserUseCase(userRepository);
-let getAllUsersUseCase = new GetAllUsersUseCase(userRepository);
+let getUsersUseCase = new GetUsersUseCase(userRepository);
+let saveUserUseCase = new SaveUserUseCase(userRepository);
 
-new Server(logger, getUserUseCase, getAllUsersUseCase);
+new Server(logger, getUserUseCase, getUsersUseCase, saveUserUseCase);
 
 // Broker bootstrap
 const Broker = require('./messagebroker/broker');
-const SaveUserUseCase = require('./usecases/saveuser');
-
-let saveUserUseCase = new SaveUserUseCase(userRepository);
 
 new Broker(logger, saveUserUseCase);
 

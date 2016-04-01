@@ -10,7 +10,7 @@ class GetUsers {
 	
 	execute(params, res) {
 		this.userRepository
-			.getAll()
+			.getUsers(params)
 			.then(function(users){
 				res.ok(users);
 			})
