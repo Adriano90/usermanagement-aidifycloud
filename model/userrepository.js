@@ -43,7 +43,7 @@ class UserRepository {
 	
 	save(user) {
 		let self = this;
-		console.log("User to save: %j", user);
+		self.logger.info("User to save: " + JSON.stringify(user));
 		return new Promise(function (resolve,reject) {
 			self.UserModel.update(
 				{id: user.id},
