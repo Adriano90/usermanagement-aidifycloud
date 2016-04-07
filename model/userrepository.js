@@ -10,11 +10,11 @@ class UserRepository {
 		this.UserModel = UserModel;
 	}
 
-	getById(id) {
+	getByLogin(login) {
 		let self = this;
-		self.logger.info('Requested user with id: ' + id);
+		self.logger.info('Requested user with login: ' + login);
 		return new Promise(function (resolve,reject) {
-			self.UserModel.find({id: id}, function(err, user) {
+			self.UserModel.find({login: login}, function(err, user) {
 				if (err) {
 					self.logger.error(err)
 					reject(err);
@@ -46,7 +46,7 @@ class UserRepository {
 		self.logger.info("User to save: " + JSON.stringify(user));
 		return new Promise(function (resolve,reject) {
 			self.UserModel.update(
-				{id: user.id},
+				{login: user.login},
 				user,
 				{upsert: true},
 				function(err, numAffected) {

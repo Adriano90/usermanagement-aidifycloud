@@ -22,9 +22,9 @@ class Server {
 			response.pong();
 		});
 		
-		api.get('/user/:id', function(req, res) {
+		api.get('/user/:login', function(req, res) {
 			if (logger) {
-				logger.info('request GET : /user/' + JSON.stringify(req.params.id));
+				logger.info('request GET : /user/' + JSON.stringify(req.params.login));
 			}
 			
 			getUser.execute(req.params, new Response(res, logger));
@@ -43,9 +43,9 @@ class Server {
 			getUsers.execute(params, new Response(res, logger));
 		});
 		
-		api.put('/user/:id', function(req, res) {
+		api.put('/user/:login', function(req, res) {
 			if (logger) {
-				logger.info('request PUT : /user/' + JSON.stringify(req.params.id));
+				logger.info('request PUT : /user/' + JSON.stringify(req.params.login));
 				logger.info(JSON.stringify(req.body));
 			}
 			

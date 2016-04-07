@@ -9,9 +9,9 @@ class GetUser {
 	}
 	
 	execute(params, res) {
-		let id = params.id;
+		let login = params.login;
 		this.userRepository
-			.getById(id)
+			.getByLogin(login)
 			.then(function(user){
 				res.ok(user);
 			})
